@@ -67,6 +67,13 @@ export const Main = () => {
     console.log(address)
   }, [address])
 
+  if (isLoading) {
+    return (
+      <div className="loader-container">
+        <div className="loader">Loading...</div>
+      </div>
+    )
+  }
   return (
     <div className="main-page">
       <button
