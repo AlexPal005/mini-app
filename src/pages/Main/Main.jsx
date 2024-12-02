@@ -1,24 +1,24 @@
 import './main.css'
 import { GoRuby } from 'react-icons/go'
-import { TonConnectUI, useTonConnectUI } from '@tonconnect/ui-react'
+import { useTonConnectUI } from '@tonconnect/ui-react'
 import { useState } from 'react'
 
 export const Main = () => {
   const [TonConnectUI] = useTonConnectUI()
-  const [isConnected, setIsConnected] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleConnect = async () => {
     try {
-      await TonConnectUI.openModal()
-      setIsConnected(true)
-    } catch (error) {
-      console.error('Error connecting to wallet:', error)
+      if (TonConnectUI.connected) {
+        setIsLoading(true)
+        await TonConnectUI.disconnect()
+      } else {
+        await TonConnectUI.openModal()
+      }
+    } catch (err) {
+      console.log('Error of connection!')
     }
-  }
-
-  const handleDisconnect = () => {
-    TonConnectUI.disconnect()
-    setIsConnected(false)
+    console.log(isLoading)
   }
 
   return (
