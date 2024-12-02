@@ -1,11 +1,12 @@
 import './main.css'
 import { GoRuby } from 'react-icons/go'
 import { useTonConnectUI } from '@tonconnect/ui-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const Main = () => {
   const [TonConnectUI] = useTonConnectUI()
   const [isLoading, setIsLoading] = useState(false)
+  //const [tonWalletAddress, setTonWalletAddress] = useState('')
 
   const handleConnect = async () => {
     try {
@@ -21,11 +22,21 @@ export const Main = () => {
     console.log(isLoading)
   }
 
+  useEffect(() => {
+    console.log(TonConnectUI.account?.address)
+  }, [TonConnectUI.account?.address])
+
   return (
     <div className="main-page">
       <button className="button" onClick={handleConnect}>
-        <GoRuby className="button__icon" />
-        <span className="button__title">Connect Wallet</span>
+        {TonConnectUI.connected ? (
+          <span className="button__title">Connect Wallet</span>
+        ) : (
+          <>
+            <GoRuby className="button__icon" />
+            <span className="button__title">Connect Wallet</span>
+          </>
+        )}
       </button>
     </div>
   )
