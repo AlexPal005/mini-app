@@ -5,7 +5,6 @@
 }
 
 .button {
-  background-color: #0398fc;
   border: none;
   border-radius: 7px;
   width: 90%;
@@ -15,6 +14,13 @@
   justify-content: center;
   cursor: pointer;
 }
+.button-blue {
+  background-color: #0398fc;
+}
+.button-err {
+  background-color: #cf3813;
+}
+
 .button__icon,
 .button__title {
   color: white;
