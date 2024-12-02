@@ -4,12 +4,12 @@ import { TonConnectUI, useTonConnectUI } from '@tonconnect/ui-react'
 import { useState } from 'react'
 
 export const Main = () => {
-  const { connect, disconnect, account, connected } = useTonConnectUI()
-  const [isConnected, setIsConnected] = useState(connected)
+  const [TonConnectUI] = useTonConnectUI()
+  const [isConnected, setIsConnected] = useState(false)
 
   const handleConnect = async () => {
     try {
-      await connect()
+      await TonConnectUI.openModal()
       setIsConnected(true)
     } catch (error) {
       console.error('Error connecting to wallet:', error)
@@ -17,7 +17,7 @@ export const Main = () => {
   }
 
   const handleDisconnect = () => {
-    disconnect()
+    TonConnectUI.disconnect()
     setIsConnected(false)
   }
 
