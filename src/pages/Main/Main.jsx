@@ -1,6 +1,6 @@
 import './main.css'
 import { GoRuby } from 'react-icons/go'
-import { useTonConnectUI } from '@tonconnect/ui-react'
+import { useTonConnectUI, useTonWallet } from '@tonconnect/ui-react'
 import { useEffect, useState } from 'react'
 
 export const Main = () => {

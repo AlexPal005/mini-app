@@ -9,7 +9,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <TonConnectUIProvider manifestUrl="https://localhost:3000/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="./manifest.json">
       <BrowserRouter>
         <App />
       </BrowserRouter>
