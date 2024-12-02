@@ -1,0 +1,28 @@
+.main-page {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: #0398fc;
+  border: none;
+  border-radius: 7px;
+  width: 90%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button__icon,
+.button__title {
+  color: white;
+}
+.button__icon {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+.button__title {
+  font-size: 18px;
+}
