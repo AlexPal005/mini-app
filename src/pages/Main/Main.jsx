@@ -3,11 +3,15 @@ import { GoRuby } from 'react-icons/go'
 import { useTonConnectUI } from '@tonconnect/ui-react'
 import { useEffect, useState } from 'react'
 import { Menu } from '../../conponents/Menu/Menu'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAddress } from './../../redux/walletSlice'
+import { useCallback } from 'react'
 
 export const Main = () => {
   const [TonConnectUI] = useTonConnectUI()
-  const [tonWalletAddress, setTonWalletAddress] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const dispatch = useDispatch()
+  const address = useSelector(state => state.wallet.address)
 
   const handleConnect = async () => {
     try {
@@ -22,15 +26,18 @@ export const Main = () => {
     }
   }
 
-  const handleConnection = adress => {
-    setTonWalletAddress(adress)
-    setIsLoading(false)
-  }
+  const handleConnection = useCallback(
+    adress => {
+      dispatch(setAddress(adress))
+      setIsLoading(false)
+    },
+    [dispatch]
+  )
 
-  const handleDisconnection = () => {
-    setTonWalletAddress('')
+  const handleDisconnection = useCallback(() => {
+    dispatch(setAddress(''))
     setIsLoading(false)
-  }
+  }, [dispatch])
 
   useEffect(() => {
     if (TonConnectUI.account?.address) {
@@ -50,23 +57,23 @@ export const Main = () => {
     return () => {
       unsubscribe()
     }
-  }, [TonConnectUI])
-
-  useEffect(() => {
-    console.log(tonWalletAddress)
-  }, [tonWalletAddress])
+  }, [TonConnectUI, handleConnection, handleDisconnection])
 
   useEffect(() => {
     console.log(isLoading)
   }, [isLoading])
 
+  useEffect(() => {
+    console.log(address)
+  }, [address])
+
   return (
     <div className="main-page">
       <button
-        className={!!tonWalletAddress ? ['button', 'button-err'].join(' ') : ['button', 'button-blue'].join(' ')}
+        className={!!address ? ['button', 'button-err'].join(' ') : ['button', 'button-blue'].join(' ')}
         onClick={handleConnect}
       >
-        {!!tonWalletAddress ? (
+        {!!address ? (
           <span className="button__title">Disconnect Wallet</span>
         ) : (
           <>
