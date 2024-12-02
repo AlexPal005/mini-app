@@ -1,3 +1,11 @@
 * {
   box-sizing: border-box;
 }
+
+.back-button {
+  width: 50px;
+  height: 30px;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
