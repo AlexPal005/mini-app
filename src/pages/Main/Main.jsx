@@ -2,6 +2,7 @@ import './main.css'
 import { GoRuby } from 'react-icons/go'
 import { useTonConnectUI } from '@tonconnect/ui-react'
 import { useEffect, useState } from 'react'
+import { Menu } from '../../conponents/Menu/Menu'
 
 export const Main = () => {
   const [TonConnectUI] = useTonConnectUI()
@@ -51,14 +52,13 @@ export const Main = () => {
     }
   }, [TonConnectUI])
 
-  //   const formatAddress = address => {
-  //     const tempAddress = Address.parse(address).toString()
-  //     return `${tempAddress.slice(0, 4)}...${tempAddress.slice(-4)}`
-  //   }
-
   useEffect(() => {
     console.log(tonWalletAddress)
   }, [tonWalletAddress])
+
+  useEffect(() => {
+    console.log(isLoading)
+  }, [isLoading])
 
   return (
     <div className="main-page">
@@ -75,6 +75,7 @@ export const Main = () => {
           </>
         )}
       </button>
+      <Menu />
     </div>
   )
 }
